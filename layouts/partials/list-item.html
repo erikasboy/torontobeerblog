@@ -1,0 +1,5 @@
+<div class="list-item">
+  <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  <div class="meta" style="margin:0">{{ .Date.Format "January 2, 2006" }}{{ with .Params.section_label }} · {{ . }}{{ end }}{{ with .Params.comments }} · {{ len (where . "type" "comment") }} comments{{ end }}</div>
+  <p>{{ .Summary | plainify | htmlUnescape | truncate 220 }}</p>
+</div>

@@ -1,0 +1,20 @@
+{{- /* Comments are a frozen record from the WordPress era; links are shown as plain text on purpose. */ -}}
+{{ with .Params.comments }}
+{{ $real := where . "type" "comment" }}
+{{ $pings := where . "type" "ne" "comment" }}
+<section class="comments">
+  {{ with $real }}
+  <h2>{{ len . }} comment{{ if ne (len .) 1 }}s{{ end }}</h2>
+  <p class="mentions">Comments are closed. These are preserved from the original site.</p>
+  {{ range . }}
+  <div class="comment{{ if ne .parent 0 }} reply{{ end }}" id="comment-{{ .id }}">
+    <div class="who"><b>{{ .author }}</b> · {{ (time .date).Format "January 2, 2006" }}</div>
+    {{ .html | safeHTML }}
+  </div>
+  {{ end }}
+  {{ end }}
+  {{ with $pings }}
+  <p class="mentions">Mentioned by: {{ range $i, $c := . }}{{ if $i }}; {{ end }}{{ $c.author }}{{ end }}</p>
+  {{ end }}
+</section>
+{{ end }}

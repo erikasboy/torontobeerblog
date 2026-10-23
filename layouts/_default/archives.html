@@ -1,0 +1,10 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ range (where site.RegularPages "Type" "in" (slice "posts" "homebrew")).GroupByDate "2006" }}
+<h2 id="y{{ .Key }}">{{ .Key }} <span class="meta">({{ len .Pages }})</span></h2>
+<ul>
+{{ range .Pages }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="meta">{{ .Date.Format "Jan 2" }}</span></li>
+{{ end }}
+</ul>
+{{ end }}
+{{ end }}

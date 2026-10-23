@@ -1,0 +1,9 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ with .Content }}<div class="note">{{ . }}</div>{{ end }}
+{{ $pages := .RegularPages }}
+{{ if .IsHome }}{{ $pages = where site.RegularPages "Type" "in" (slice "posts" "homebrew") }}{{ end }}
+{{ $pager := .Paginate $pages.ByDate.Reverse }}
+{{ range $pager.Pages }}{{ partial "list-item.html" . }}{{ end }}
+{{ partial "pager.html" $pager }}
+{{ end }}

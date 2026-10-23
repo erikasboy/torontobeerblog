@@ -1,0 +1,1 @@
+﻿Instareview posts (2018-2020), auto-posted from Instagram via IFTTT. Removed from the site because their images were hot-linked to Instagram and no longer load. To restore, move these files back into content\posts.
